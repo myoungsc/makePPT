@@ -1,6 +1,6 @@
 {
   "name": "make-ppt",
-  "description": "Electron application boilerplate based on React, React Router, Webpack, React Fast Refresh for rapid application development",
+  "description": ".",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\"",
     "build:main": "cross-env NODE_ENV=production TS_NODE_TRANSPILE_ONLY=true webpack --config ./.erb/configs/webpack.config.main.prod.ts",
@@ -100,7 +100,7 @@
     "publish": {
       "provider": "github",
       "owner": "myoungsc",
-      "repo": "myoung.sc.makeppt"
+      "repo": "makePpt"
     }
   },
   "repository": {
