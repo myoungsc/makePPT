@@ -1,3 +1,4 @@
+/* eslint-disable new-cap */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint global-require: off, no-console: off, promise/always-return: off */
 
@@ -12,12 +13,15 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
+import fs from 'fs';
+import http from 'http';
 import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
+import pptxgen from 'pptxgenjs';
+import moment from 'moment';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
-import { makePpt } from '../util/pptx';
 
 export default class AppUpdater {
   constructor() {
@@ -142,6 +146,65 @@ app
     });
   })
   .catch(console.log);
+
+const makePpt = async (bookInfos: BookInfo[]) => {
+  const appPath = app.getPath('desktop');
+  const pptx = new pptxgen();
+  pptx.layout = 'LAYOUT_WIDE';
+
+  bookInfos.map(async (value: BookInfo) => {
+    const slide = pptx.addSlide();
+    slide.background = {
+      path: 'https://raw.githubusercontent.com/myoungsc/makePpt/master/assets/pptxBackground.jpeg',
+    };
+
+    slide.addText(value.chapterText, {
+      x: '11%',
+      y: '1%',
+      w: '89%',
+      h: '99%',
+      color: '000000',
+      valign: 'top',
+      fontFace: '맑은 고딕',
+      fontSize: 42,
+      align: 'left',
+      bold: true,
+      shadow: {
+        type: 'outer',
+        color: 'C0C0C0',
+        blur: 3,
+        offset: 3,
+        angle: 45,
+      },
+    });
+
+    slide.addText(
+      `${value.abbreviation}\n${value.selectChapter}:${value.selectSection}`,
+      {
+        x: '1%',
+        y: '1%',
+        w: '10%',
+        h: '15%',
+        color: '333399',
+        fontFace: '맑은 고딕',
+        fontSize: 24,
+        align: 'center',
+      }
+    );
+  });
+
+  const currentDate = moment().format('YYYYMMDD');
+  pptx
+    .writeFile({ fileName: `${appPath}/${currentDate} 대예배.pptx` })
+    .then((fileName: any) => {
+      console.log(`created file: ${fileName}`);
+    })
+    .catch((e: any) => {
+      console.log(e);
+    });
+
+  return appPath;
+};
 
 ipcMain.on('ipc-example', async (event, arg) => {
   log.info('ping...');
