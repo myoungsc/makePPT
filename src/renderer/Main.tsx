@@ -38,6 +38,7 @@ const Main = () => {
   const [sectionList, setSectionList] = useState<number[]>();
   const [chapter, setChapter] = useState<number>();
   const [checkInfo, setCheckInfo] = useState<BookInfo[]>();
+  const [bookVersion, setBookVersion] = useState<string>();
 
   const clickOldNew = (value: string) => {
     setSelectBookInfo(undefined);
@@ -51,6 +52,7 @@ const Main = () => {
       setChapter(undefined);
       setSectionList(undefined);
       setSelectBookInfo(undefined);
+      setBookVersion(undefined);
       return;
     }
 
@@ -72,6 +74,11 @@ const Main = () => {
         setSectionList(undefined);
       }
     });
+  };
+
+  const clickBookVersion = (version: string) => {
+    console.log(version);
+    setBookVersion(version);
   };
 
   const clickSlectChapter = (value: number) => {
@@ -114,14 +121,20 @@ const Main = () => {
   };
 
   const submitMakePpt = async () => {
+    console.log(bookVersion);
+
+    if (bookVersion === undefined) {
+      alert('개역한글 또는 개역개정을 선택해주세요.');
+      return;
+    }
     if (checkInfo) {
-      const results: string[] = [];
       for (let i = 0; i < checkInfo.length; i += 1) {
         const bookInfo = checkInfo[i];
         const resultText = await getHtmlBible(
           bookInfo.key,
           bookInfo.selectChapter,
-          bookInfo.selectSection
+          bookInfo.selectSection,
+          bookVersion
         );
         bookInfo.chapterText = resultText.trim();
       }
@@ -151,6 +164,24 @@ const Main = () => {
                   </div>
                 );
               })}
+              <div
+                onClick={() => clickBookVersion('HAN')}
+                onKeyUp={() => {}}
+                className={
+                  bookVersion === 'HAN' ? 'Main-button-Select' : 'Main-button'
+                }
+              >
+                <label className="Main-button-label">개역한글</label>
+              </div>
+              <div
+                onClick={() => clickBookVersion('GAE')}
+                onKeyUp={() => {}}
+                className={
+                  bookVersion === 'GAE' ? 'Main-button-Select' : 'Main-button'
+                }
+              >
+                <label className="Main-button-label">개역개정</label>
+              </div>
             </div>
             <div className="Line-horizontal" />
           </div>

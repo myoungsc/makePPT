@@ -6,8 +6,13 @@ function spaceMoreThanOne(str: string) {
   return str.replace(/\s+/g, ' ');
 }
 
-export const getHtmlBible = async (book: string, chap: number, sec: number) => {
-  const apiUrl = `https://www.bskorea.or.kr/bible/korbibReadpage.php?version=HAN&book=${book}&chap=${chap}&sec=${sec}`;
+export const getHtmlBible = async (
+  book: string,
+  chap: number,
+  sec: number,
+  version: string
+) => {
+  const apiUrl = `https://www.bskorea.or.kr/bible/korbibReadpage.php?version=${version}&book=${book}&chap=${chap}&sec=${sec}`;
   const response = await fetch(apiUrl, {
     method: 'get',
     headers: {

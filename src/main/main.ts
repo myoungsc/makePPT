@@ -13,8 +13,6 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 import path from 'path';
-import fs from 'fs';
-import http from 'http';
 import { app, BrowserWindow, shell, ipcMain, dialog } from 'electron';
 import pptxgen from 'pptxgenjs';
 import moment from 'moment';
