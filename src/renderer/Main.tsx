@@ -3,7 +3,7 @@
 /* eslint-disable array-callback-return */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { getHtmlBible } from '../api/bibleApi';
 import { OldList, NewList, BookNames } from '../util/bible';
 import './Main.css';
@@ -67,7 +67,6 @@ const Main = () => {
   };
 
   const clickSlectBook = (bookName: string) => {
-    console.log('selectBook', bookName);
     BookNames.map((value: BookInfo) => {
       if (value.bookName === bookName) {
         setSelectBookInfo(value);
@@ -77,7 +76,6 @@ const Main = () => {
   };
 
   const clickBookVersion = (version: string) => {
-    console.log(version);
     setBookVersion(version);
   };
 
