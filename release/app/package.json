@@ -1,12 +1,12 @@
 {
   "name": "make-ppt",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Electron application boilerplate based on React, React Router, Webpack, React Hot Loader for rapid application development",
   "main": "./dist/main/main.js",
   "author": {
     "name": "myoungsc",
     "email": "audckd613@gmail.com",
-    "url": "https://github.com/electron-react-boilerplate"
+    "url": "https://github.com/myoungsc/makePpt"
   },
   "scripts": {
     "electron-rebuild": "node -r ts-node/register ../../.erb/scripts/electron-rebuild.js",
