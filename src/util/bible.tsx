@@ -375,7 +375,7 @@ export const BookNames: BookInfo[] = [
   },
   {
     key: 'jer',
-    bookName: '예례미야',
+    bookName: '예레미야',
     abbreviation: '렘',
     chapter: Array.from({ length: 52 }, (_, i) => i + 1),
     sectionForChap: [
