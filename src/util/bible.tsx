@@ -781,7 +781,7 @@ export const BookNames: BookInfo[] = [
   },
   {
     key: '1jn',
-    bookName: '요한일서',
+    bookName: '요한1서',
     abbreviation: '요일',
     chapter: Array.from({ length: 5 }, (_, i) => i + 1),
     sectionForChap: [10, 29, 24, 21, 21],
@@ -791,7 +791,7 @@ export const BookNames: BookInfo[] = [
   },
   {
     key: '2jn',
-    bookName: '요한이서',
+    bookName: '요한2서',
     abbreviation: '요이',
     chapter: Array.from({ length: 1 }, (_, i) => i + 1),
     sectionForChap: [13],
@@ -801,7 +801,7 @@ export const BookNames: BookInfo[] = [
   },
   {
     key: '3jn',
-    bookName: '요한삼서',
+    bookName: '요한3서',
     abbreviation: '요삼',
     chapter: Array.from({ length: 1 }, (_, i) => i + 1),
     sectionForChap: [15],
